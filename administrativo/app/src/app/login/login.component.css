@@ -1,0 +1,26 @@
+section {
+  display: flex;
+  align-items: center;
+}
+section .contenedor {
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  height: 600px;
+}
+section .contenedor .contenedor-img, section .contenedor form {
+  width: 50%;
+}
+section .contenedor .contenedor-img {
+  background: url("../../assets/login/fondoAuto.png");
+}
+section .contenedor form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 70px;
+}
+section .contenedor form h2 {
+  color: #E76F51;
+}/*# sourceMappingURL=login.component.css.map */
