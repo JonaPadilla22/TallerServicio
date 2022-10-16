@@ -20,7 +20,55 @@ section .contenedor form {
   justify-content: center;
   background: #fff;
   border-radius: 70px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  position: relative;
 }
 section .contenedor form h2 {
+  display: block;
   color: #E76F51;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 70px;
+  font-size: 30pt;
+}
+section .contenedor form .contenedor-input {
+  width: 260px;
+  height: 50px;
+  margin-top: 30px;
+  position: relative;
+}
+section .contenedor form .contenedor-input i {
+  position: absolute;
+  left: 20px;
+  font-size: 28px;
+  color: #45625f;
+  top: 11px;
+}
+section .contenedor form .contenedor-input input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: 1px solid #2A9D8F;
+  border-radius: 50px;
+  font-size: 16px;
+  padding-left: 55px;
+  padding-right: 10px;
+  color: #45625f;
+}
+section .contenedor form button {
+  margin-top: 60px;
+  width: 260px;
+  height: 50px;
+  background: #264653;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolutes;
+  bottom: 80px;
 }/*# sourceMappingURL=login.component.css.map */
