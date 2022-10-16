@@ -1,4 +1,7 @@
 import { Router } from "express";
+import auth from "./auth";
+import usuarios from "./usuarios";
+import vehiculos from "./vehiculos"
 import manoDeObra from "./manoDeObra.route";
 import marca from "./marca.route";
 import modelo from "./modelo.route";
@@ -17,5 +20,8 @@ routes.use("/tipoPersona", personType);
 routes.use("/tipoRefaccion", repairType);
 routes.use("/tipoServicio", serviceType);
 routes.use("/tipoUsuario", userType);
+routes.use("/auth", auth);
+routes.use("/usuarios", usuarios);
+routes.use("/vehiculos", vehiculos);
 
 export default routes;
