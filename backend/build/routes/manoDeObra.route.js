@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const manoDeObra_controller_1 = require("../controllers/manoDeObra.controller");
+const route = (0, express_1.Router)();
+route.get('/', manoDeObra_controller_1.ManoDeObraController.getAll);
+route.get('/:id', manoDeObra_controller_1.ManoDeObraController.getById);
+route.post('/', manoDeObra_controller_1.ManoDeObraController.insert);
+route.put('/:id', manoDeObra_controller_1.ManoDeObraController.update);
+exports.default = route;
