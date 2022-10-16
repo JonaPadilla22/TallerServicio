@@ -5,18 +5,18 @@ import { connection } from "../database";
 class BrandService {
     static getBrands = async () => {
         let [rows] = await connection.query('SELECT * FROM marca');
-        let users = rows.map((r: any) => {
+        let brand = rows.map((r: any) => {
             return r;
         });
-        return users;  
+        return brand;  
     };
 
     static getBrandById = async (id: string) => {
-        let [rows] = await connection.query('SELECT * FROM marca WHERE ID_MARCA = ?',[parseInt(id)]);
-        let users = rows.map((r: any) => {
+        let [rows] = await connection.query('SELECT * FROM marca WHERE ID_MARCA = ?',[id]);
+        let brand = rows.map((r: any) => {
             return r;
         });
-        return users;   
+        return brand;   
     };
     
     static getBrandStatus = async (id: string) => {
