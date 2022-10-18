@@ -1,5 +1,4 @@
 "use strict";
-=======
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -15,6 +14,7 @@ exports.UsuariosController = void 0;
 const usuarios_1 = require("../services/usuarios");
 //import { enviar_mail } from "../utils/sendEmail";
 const bcrypt_1 = require("../utils/bcrypt");
+var path = require('path');
 class UsuariosController {
 }
 exports.UsuariosController = UsuariosController;
@@ -89,6 +89,23 @@ UsuariosController.updatePassword = (req, res) => __awaiter(void 0, void 0, void
         // const user: Usuario = {CORREO: resp[0]['CORREO'], NOMBRE: resp[0]['NOMBRE'], CONTRA: ""};
         // await enviar_mail(user, pass, 2);
         res.status(201).json({ message: "ACTUALIZADO CON EXITO" });
+    }
+    catch (e) {
+        res.status(500).json(e);
+    }
+});
+UsuariosController.updateImagenPerfil = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (req.files) {
+            const id = req.params.id;
+            const file = req.files.file;
+            const extFile = path.extname(file.name);
+            const img = id + extFile;
+            const data = { IMG: img };
+            file.mv("files/" + id + extFile);
+            yield usuarios_1.UsuariosService.updateImg(data, id);
+            res.json({ message: "ACTUALIZADO CON ÉXITO" });
+        }
     }
     catch (e) {
         res.status(500).json(e);

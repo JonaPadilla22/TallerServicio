@@ -12,6 +12,7 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VehiculosService = void 0;
 const database_1 = require("../database");
+const usuarios_1 = require("../services/usuarios");
 class VehiculosService {
 }
 exports.VehiculosService = VehiculosService;
@@ -30,6 +31,32 @@ VehiculosService.getById = (id) => __awaiter(void 0, void 0, void 0, function* (
     });
     return veh;
 });
+VehiculosService.getAllClienteVeh = () => __awaiter(void 0, void 0, void 0, function* () {
+    let [rows] = yield database_1.connection.query('SELECT * FROM cliente_veh');
+    var veh = [];
+    for (let i = 0; i < rows.length; i++) {
+        const usuario = yield usuarios_1.UsuariosService.getUserById(rows[i].ID_USUARIO.toString());
+        delete rows[i].ID_USUARIO;
+        rows[i].USUARIO = usuario[0];
+        const vehiculo = yield _a.getById(rows[i].MATRICULA.toString());
+        delete rows[i].MATRICULA;
+        rows[i].VEHICULO = vehiculo[0];
+        veh.push(rows[i]);
+    }
+    return veh;
+});
+VehiculosService.getAllVehByCliente = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    let [rows] = yield database_1.connection.query('SELECT * FROM cliente_veh WHERE id_usuario = ?', [id]);
+    var veh = [];
+    for (let i = 0; i < rows.length; i++) {
+        delete rows[i].ID_USUARIO;
+        const vehiculo = yield _a.getById(rows[i].MATRICULA.toString());
+        delete rows[i].MATRICULA;
+        rows[i].VEHICULO = vehiculo[0];
+        veh.push(rows[i]);
+    }
+    return veh;
+});
 VehiculosService.insert = (item) => __awaiter(void 0, void 0, void 0, function* () {
     yield database_1.connection.query('INSERT INTO vehiculo SET ?', [item]);
     return item;
@@ -37,4 +64,8 @@ VehiculosService.insert = (item) => __awaiter(void 0, void 0, void 0, function* 
 VehiculosService.update = (item, id) => __awaiter(void 0, void 0, void 0, function* () {
     const responseInsert = yield database_1.connection.query('UPDATE vehiculo SET ? WHERE matricula = ?', [item, id]);
     return responseInsert;
+});
+VehiculosService.insertClienteVeh = (id, matricula) => __awaiter(void 0, void 0, void 0, function* () {
+    yield database_1.connection.query('INSERT INTO cliente_veh SET id_usuario = ?, matricula = ?', [id, matricula]);
+    return { ID: id, MATRICULA: matricula };
 });

@@ -3,7 +3,7 @@ import { Usuario } from "../interfaces/usuario";
 import { UsuariosService } from "../services/usuarios";
 //import { enviar_mail } from "../utils/sendEmail";
 import { generatePass, encrypt } from "../utils/bcrypt";
-
+var path = require('path')
 class UsuariosController {
     static getAll = async (_req:Request, res:Response) => { 
         try{       
@@ -89,6 +89,24 @@ class UsuariosController {
             // await enviar_mail(user, pass, 2);
             
             res.status(201).json({message: "ACTUALIZADO CON EXITO"});
+        }catch(e){
+            res.status(500).json(e);
+        }
+    }
+
+    static updateImagenPerfil = async (req:Request, res:Response) => {
+        try{
+            if(req.files){
+                const id = req.params.id;
+                const file: any = req.files.file; 
+                const extFile = path.extname(file.name);
+                const img = id + extFile;
+                const data = {IMG: img}
+                file.mv("files/" + id + extFile);
+                await UsuariosService.updateImg(data, id);
+    
+                res.json({message: "ACTUALIZADO CON ÉXITO"});  
+            }              
         }catch(e){
             res.status(500).json(e);
         }

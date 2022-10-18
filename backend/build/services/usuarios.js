@@ -39,7 +39,7 @@ UsuariosService.getUserById = (id) => __awaiter(void 0, void 0, void 0, function
     return users;
 });
 UsuariosService.getUserStatus = (correo) => __awaiter(void 0, void 0, void 0, function* () {
-    let [rows] = yield database_1.connection.query('SELECT estatus FROM usuario WHERE correo = ?', [correo]);
+    let [rows] = yield database_1.connection.query('SELECT estatus FROM usuario WHERE id_usuario = ?', [correo]);
     var valid = rows[0]['estatus'];
     if (valid) {
         return valid;
@@ -65,5 +65,9 @@ UsuariosService.updateUser = (item, id) => __awaiter(void 0, void 0, void 0, fun
 });
 UsuariosService.updateUserPassword = (pass, id) => __awaiter(void 0, void 0, void 0, function* () {
     const responseInsert = yield database_1.connection.query('UPDATE usuario SET contra = ? WHERE id_usuario = ?', [pass, id]);
+    return responseInsert;
+});
+UsuariosService.updateImg = (ruta, id) => __awaiter(void 0, void 0, void 0, function* () {
+    const responseInsert = yield database_1.connection.query('UPDATE usuario SET ? WHERE id_usuario = ?', [ruta, id]);
     return responseInsert;
 });

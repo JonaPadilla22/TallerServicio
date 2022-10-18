@@ -7,5 +7,6 @@ export interface Usuario extends Auth {
     TELEFONO?: string,
     RFC?: string,
     DIRECCION?: string,
+    IMG?: string,
     ESTATUS?: string
 }

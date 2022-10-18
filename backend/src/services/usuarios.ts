@@ -28,7 +28,7 @@ class UsuariosService {
     };
     
     static getUserStatus = async (correo: string) => {
-        let [rows] = await connection.query('SELECT estatus FROM usuario WHERE correo = ?',[correo]);
+        let [rows] = await connection.query('SELECT estatus FROM usuario WHERE id_usuario = ?',[correo]);
         var valid = rows[0]['estatus'];
 
         if(valid){
@@ -58,6 +58,11 @@ class UsuariosService {
     static updateUserPassword = async (pass: string, id: string) => {      
         const responseInsert = await connection.query('UPDATE usuario SET contra = ? WHERE id_usuario = ?', [pass, id]);
         return responseInsert;         
+    };
+
+    static updateImg = async (ruta: {}, id: string) => {       
+        const responseInsert = await connection.query('UPDATE usuario SET ? WHERE id_usuario = ?', [ruta, id]);
+        return responseInsert;        
     };
     
 }

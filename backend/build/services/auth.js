@@ -13,7 +13,7 @@ exports.loginUser = void 0;
 //import { Usuario } from "../interfaces/usuario";
 const database_1 = require("../database");
 const bcrypt_1 = require("../utils/bcrypt");
-//import { generarToken } from "../utils/jwt";
+const jwt_1 = require("../utils/jwt");
 const loginUser = (item) => __awaiter(void 0, void 0, void 0, function* () {
     let [rows] = yield database_1.connection.execute('SELECT * FROM usuario_login where correo=?', [item.CORREO]);
     let users = rows.map((r) => {
@@ -26,8 +26,7 @@ const loginUser = (item) => __awaiter(void 0, void 0, void 0, function* () {
     const isValid = yield (0, bcrypt_1.verified)(item.CONTRA, passHash);
     if (!isValid)
         return "CONTRASEÑA INCORRECTA";
-    //const token = generarToken(obj['CORREO']);
-    const token = "token";
+    const token = (0, jwt_1.generarToken)(obj['ID']);
     delete obj['CONTRA'];
     const data = {
         TOKEN: token,

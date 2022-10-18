@@ -11,7 +11,7 @@ class VehiculosController {
         }catch(e){
             res.status(500).json(e);
         }  
-    }  
+    }
 
     static getById = async (req:Request, res:Response) => {          
         try{
@@ -21,7 +21,28 @@ class VehiculosController {
         }catch(e){
             res.status(500).json(e);
         }   
-    }  
+    }
+
+    static getAllClienteVeh = async (_req:Request, res:Response) => { 
+        try{       
+            const response = await VehiculosService.getAllClienteVeh();       
+           
+            res.json(response);
+        }catch(e){
+            res.status(500).json(e);
+        }  
+    }
+
+    static getAllVehByCliente = async (req:Request, res:Response) => { 
+        try{       
+            const id = req.params.id;
+            const response = await VehiculosService.getAllVehByCliente(id);      
+           
+            res.json(response);
+        }catch(e){
+            res.status(500).json(e);
+        }  
+    }
     
     static insert = async ({ body }:Request, res:Response) => {
         try{                  
@@ -42,6 +63,16 @@ class VehiculosController {
             await VehiculosService.update(data, id);
 
             res.json({message: "ACTUALIZADO CON ÉXITO"});         
+        }catch(e){
+            res.status(500).json(e);
+        }
+    }
+
+    static insertClienteVeh = async ({ body }:Request, res:Response) => {
+        try{                              
+            const response = await VehiculosService.insertClienteVeh(body.ID_USUARIO, body.MATRICULA);
+
+            res.status(201).json({message: "REGISTRADO CON ÉXITO", data: response});     
         }catch(e){
             res.status(500).json(e);
         }

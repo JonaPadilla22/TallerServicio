@@ -2,11 +2,10 @@ import { Auth } from "../interfaces/auth";
 //import { Usuario } from "../interfaces/usuario";
 import { connection } from "../database";
 import { verified } from "../utils/bcrypt";
-//import { generarToken } from "../utils/jwt";
+import { generarToken } from "../utils/jwt";
 
 const loginUser = async (item: Auth) => {
-
-    
+ 
     let [rows] = await connection.execute('SELECT * FROM usuario_login where correo=?', [item.CORREO]);
     let users = rows.map((r: any) => {
         return r;
@@ -19,8 +18,7 @@ const loginUser = async (item: Auth) => {
 
     if(!isValid) return "CONTRASEÑA INCORRECTA";
 
-    //const token = generarToken(obj['CORREO']);
-    const token = "token";
+    const token = generarToken(obj['ID']);
     delete obj['CONTRA'];
     const data = {
         TOKEN: token,

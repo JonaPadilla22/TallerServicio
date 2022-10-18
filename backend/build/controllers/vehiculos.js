@@ -35,6 +35,25 @@ VehiculosController.getById = (req, res) => __awaiter(void 0, void 0, void 0, fu
         res.status(500).json(e);
     }
 });
+VehiculosController.getAllClienteVeh = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield vehiculos_1.VehiculosService.getAllClienteVeh();
+        res.json(response);
+    }
+    catch (e) {
+        res.status(500).json(e);
+    }
+});
+VehiculosController.getAllVehByCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const response = yield vehiculos_1.VehiculosService.getAllVehByCliente(id);
+        res.json(response);
+    }
+    catch (e) {
+        res.status(500).json(e);
+    }
+});
 VehiculosController.insert = ({ body }, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const veh = body;
@@ -51,6 +70,15 @@ VehiculosController.update = (req, res) => __awaiter(void 0, void 0, void 0, fun
         const data = req.body;
         yield vehiculos_1.VehiculosService.update(data, id);
         res.json({ message: "ACTUALIZADO CON ÉXITO" });
+    }
+    catch (e) {
+        res.status(500).json(e);
+    }
+});
+VehiculosController.insertClienteVeh = ({ body }, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield vehiculos_1.VehiculosService.insertClienteVeh(body.ID_USUARIO, body.MATRICULA);
+        res.status(201).json({ message: "REGISTRADO CON ÉXITO", data: response });
     }
     catch (e) {
         res.status(500).json(e);

@@ -12,5 +12,6 @@ route.post('/', UsuariosController.insert);
 
 route.put('/:id', UsuariosController.update);
 route.put('/:id/pass/:pass', UsuariosController.updatePassword);
+route.post('/actualizarImagen/:id', UsuariosController.updateImagenPerfil);
 
 export default route

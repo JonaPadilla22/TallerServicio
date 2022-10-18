@@ -1,4 +1,3 @@
-
 export interface Vehiculo {
     MATRICULA?: number,
     ID_MODELO?: number,
