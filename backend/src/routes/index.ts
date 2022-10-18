@@ -9,6 +9,7 @@ import personType from "./tipoPersona.route";
 import repairType from "./tipoRefaccion.route";
 import serviceType from "./tipoServicio.route";
 import userType from "./tipoUsuario.route";
+import firebase from "./firebase";
 
 
 const routes = Router();
@@ -23,5 +24,7 @@ routes.use("/tipoUsuario", userType);
 routes.use("/auth", auth);
 routes.use("/usuarios", usuarios);
 routes.use("/vehiculos", vehiculos);
+routes.use("/firebase", firebase);
+
 
 export default routes;
