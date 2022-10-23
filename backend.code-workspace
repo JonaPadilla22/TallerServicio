@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "backend"
+			"path": "app-movil"
 		},
 		{
-			"path": "../CapacitacionesWeb/capacitacion-backend"
+			"path": "backend"
 		}
 	],
 	"settings": {

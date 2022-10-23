@@ -6,10 +6,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ionic build && npx cap run android",
+    "open": "npx cap open android",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "device" : "npx cap run android"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +28,7 @@
     "@capacitor/core": "4.3.0",
     "@capacitor/haptics": "4.0.1",
     "@capacitor/keyboard": "4.0.1",
+    "@capacitor/push-notifications": "^4.1.0",
     "@capacitor/status-bar": "4.0.1",
     "@ionic-native/barcode-scanner": "^5.36.0",
     "@ionic/angular": "^6.1.9",
@@ -46,6 +49,7 @@
     "@angular/language-service": "^14.0.0",
     "@capacitor/cli": "4.3.0",
     "@ionic/angular-toolkit": "^6.0.0",
+    "@ionic/cli": "6.20.3",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
