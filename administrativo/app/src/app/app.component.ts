@@ -3,6 +3,7 @@ import {
   NgxQrcodeElementTypes,
   NgxQrcodeErrorCorrectionLevels
 } from "@techiediaries/ngx-qrcode";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
