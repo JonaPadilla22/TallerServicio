@@ -6,8 +6,8 @@ import { RegistrarCitaComponent } from './paginas/citas/registrar-cita/registrar
 import { HomePageComponent } from './paginas/home-page.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   {
     path: '',
     component: HomePageComponent,
